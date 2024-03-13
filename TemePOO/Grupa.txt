@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Grupa
+{
+private:
+    string nume;
+    string prenume;
+    int varsta;
+    int note[5]; 
+    float media;
+
+public:
+    Grupa(const string& nnume, const string& pprenume,const int& vvarsta)
+    {
+       nume = nnume;
+       prenume = pprenume;
+        varsta = vvarsta; 
+        media = 0; 
+    }
+
+
+    void citesteNote()
+    {
+        
+        for (int i = 0; i < 5; i++)
+        {
+            cout << "Nota " << i + 1 << ": ";
+            cin >> note[i];
+        }
+    }
+
+
+    void Media()
+    {
+        float suma = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            suma += note[i];
+        }
+        media = suma / 5;
+    }
+
+
+    void afisare()
+    {
+        cout << "Nume: " << nume << endl;
+        cout << "Prenume: " << prenume << endl;
+        cout << "Vârsta: " << varsta << endl;
+        cout << "Notele: ";
+        for (int i = 0; i < 5; i++)
+        {
+            cout << note[i] << " ";
+        }
+        cout << endl;
+        cout << "Media: " << media << endl;
+    }
+};
+
+int main()
+{
+    string nume, prenume;
+    int varsta;
+    cout << "numele: ";
+    cin >> nume;
+    cout << "prenumele: ";
+    cin >> prenume;
+    cout<<"Varsta: ";
+    cin>>varsta;
+
+    Grupa student(nume, prenume,varsta);
+    student.citesteNote();
+    student.Media();
+    student.afisare();
+
+    return 0;
+}

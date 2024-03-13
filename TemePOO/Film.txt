@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Film
+{
+private:
+    string nume;
+    string actorPrincipal;
+    string actorSecundar;
+
+public:
+    Film()
+    {
+        nume = "";
+        actorPrincipal = "";
+        actorSecundar = "";
+    }
+
+    Film(const string& n, const string& ap, const string& as)
+    {
+        nume = n;
+        actorPrincipal = ap;
+        actorSecundar = as;
+    }
+
+    void afisare()
+    {
+        cout << nume << endl;
+        cout <<actorPrincipal << endl;
+        cout << actorSecundar << endl;
+    }
+
+    ~Film () {cout<<"Destructor for Film"; }
+};
+
+int main()
+{
+    Film f("Film", "ActorPrincipal", "ActorSecundar");
+    f.afisare();
+
+    return 0;
+}

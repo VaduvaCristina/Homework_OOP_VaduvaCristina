@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Masina {
+private:
+    string tipMasina;
+    string culoare;
+    double pret;
+
+public:
+    Masina(const string& tip, const string& col, double price)
+        : tipMasina(tip), culoare(col), pret(price) { }
+
+     ~Masina() { }
+
+    void afisare() {
+        cout << "Tip Mașină: " << tipMasina << endl;
+        cout << "Culoare: " << culoare << endl;
+        cout << "Preț: " << pret << " RON" << endl;
+    }
+};
+
+class Sofer {
+private:
+    string nume;
+    string prenume;
+    int varsta;
+    Masina masinaSofer;
+
+public:
+    Sofer(const string& nume, const string& prenume, int age, const Masina& masina)
+        : nume(nume), prenume(prenume), varsta(age), masinaSofer(masina) {}
+
+    ~Sofer() {}
+
+    void afisare() {
+        cout << "Nume: " << nume << endl;
+        cout << "Prenume: " << prenume << endl;
+        cout << "Vârsta: " << varsta << " ani" << endl;
+        cout << "Mașina șoferului:" << endl;
+        masinaSofer.afisare();
+    }
+};
+
+int main() {
+    Masina masinaA("MasinaA", "CuloareA", 30000.0);
+    Masina masinaB("MasinaB", "CuloareB", 3000.0);
+
+    Sofer sofer1("Sofer1", "11", 40, masinaA);
+    Sofer sofer2("Sofer2", "2", 47, masinaB);
+
+    cout << "\nDetalii șofer 1:" << endl;
+    sofer1.afisare();
+
+    cout << "\nDetalii șofer 2:" << endl;
+    sofer2.afisare();
+
+    return 0;
+}

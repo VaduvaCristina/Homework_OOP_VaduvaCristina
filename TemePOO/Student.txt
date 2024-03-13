@@ -1,0 +1,103 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+class Data_de_nastere {
+public:
+    int an;
+    int ziua;
+    int luna;
+
+    
+    Data_de_nastere(int an, int luna, int ziua) : an(an), luna(luna), ziua(ziua) {
+        cout << "Constructor Data_de_nastere"<< endl;
+    }
+
+    
+    ~Data_de_nastere() {
+        cout << "Destructor Data_de_nastere" << endl;
+    }
+};
+
+class Student : public Data_de_nastere {
+public:
+    string nume;
+    string prenume;
+    int varsta;
+
+    
+    Student(const string& nume, const string& prenume, int an, int luna, int ziua)
+        : Data_de_nastere(an, luna, ziua), nume(nume), prenume(prenume) {
+        varsta = 2023 - an;
+        cout << "Constructor Student" << endl;
+    }
+
+    
+    ~Student() {
+        cout << "Destructor Student" << endl;
+    }
+};
+
+
+class Note {
+public:
+    float v[5] = {10, 9.0, 7.5, 8.0, 7};
+
+
+    Note() {
+        cout << "Constructor Note" << endl;
+    }
+
+    
+    ~Note() {
+        cout << "Destructor Note" << endl;
+    }
+};
+
+
+class Grupa {
+public:
+    Student s;
+    Data_de_nastere d;
+    Note n;
+    string nr_Grupa;
+
+    
+    Grupa(int nr_Grupa, const string& nume, const string& prenume, int an, int luna, int ziua)
+        : s(nume, prenume, an, luna, ziua), d(an, luna, ziua), nr_Grupa(to_string(nr_Grupa)) {
+        cout << "Constructor Grupa" << endl;
+    }
+
+
+    ~Grupa() {
+        cout << "Destructor Grupa" << endl;
+    }
+
+  
+    double calculeaza_media() const {
+        double media = 0;
+        for (int i = 0; i < 5; ++i) {
+            media += n.v[i];
+        }
+        return media / 5;
+    }
+
+    void arata_data() const {
+        cout << d.ziua << "/" << d.luna << "/" << d.an << endl;
+    }
+};
+
+int main() {
+    Grupa grupa1(3, "Nume_Student", "Prenume_Student", 2003, 6, 12);
+    cout << "Nr. Grupa: " << grupa1.nr_Grupa << endl;
+    cout << "Nume: " << grupa1.s.nume << endl;
+    cout << "Prenume: " << grupa1.s.prenume << endl;
+    cout << "Varsta: " << grupa1.s.varsta << endl;
+    cout << "Data nasterii: ";
+    grupa1.arata_data();
+    cout << "Media notelor: " << grupa1.calculeaza_media() << endl;
+
+    return 0;
+}
